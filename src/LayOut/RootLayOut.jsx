@@ -3,7 +3,7 @@ import { Outlet } from 'react-router';
 
 const RootLayOut = () => {
     return (
-        <div className="bg-slate-800 ">
+        <div className="">
             <Outlet></Outlet>
         </div>
     );

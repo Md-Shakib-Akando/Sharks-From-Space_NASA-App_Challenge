@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Activity, Waves, Satellite, MapPin } from 'lucide-react';
+import { Activity, Waves, Satellite, MapPin, ArrowLeft } from 'lucide-react';
+import { Link } from 'react-router';
 
 const DashBoard = () => {
     const [layers, setLayers] = useState({
@@ -20,6 +21,22 @@ const DashBoard = () => {
     const [paceData, setPaceData] = useState([]);
     const [swotData, setSwotData] = useState([]);
 
+    const isOceanApprox = (lat, lng) => {
+        // world landmass bounding boxes
+        if (
+            (lat > -60 && lat < 80 && lng > -20 && lng < 50) ||
+            (lat > -60 && lat < 80 && lng > 60 && lng < 150) ||
+            (lat > 5 && lat < 85 && lng > -170 && lng < -50) ||
+            (lat > -60 && lat < 15 && lng > -90 && lng < -30) ||
+            (lat > -45 && lat < -10 && lng > 110 && lng < 155) ||
+            (lat >= 41 && lat <= 82 && lng >= 19 && lng <= 180) ||
+            (lat >= 25 && lat <= 39 && lng >= 44 && lng <= 63)
+        ) {
+            return false;
+        }
+        return true;
+    };
+
     useEffect(() => {
         // PACE API call
         fetch('https://backend-nasa-space-app-challenge-2.onrender.com/pace-data')
@@ -31,7 +48,9 @@ const DashBoard = () => {
                     chlorophyll: rawData.chlor_a[i],
                     phytoplankton: rawData.phytoplankton[i],
                     sst: rawData.sst[i]
-                }));
+                }))
+                    // === filter only ocean points ===
+                    .filter(p => isOceanApprox(p.lat, p.lng));
                 setPaceData(formattedData);
             })
             .catch(err => console.error('PACE API error:', err));
@@ -59,13 +78,15 @@ const DashBoard = () => {
                             currentSpeed: data.currentSpeed?.[i] ?? 0
                         });
                     }
-                    setSwotData(formattedSwotData);
+                    // === filter only ocean points ===
+                    setSwotData(formattedSwotData.filter(p => isOceanApprox(p.lat, p.lng)));
                 } else {
                     console.error('SWOT Data format invalid:', data);
                 }
             })
             .catch(err => console.error('SWOT API error:', err));
     }, []);
+
 
     const calculateSharkProbability = (chlorophyll, phytoplankton, eddyStrength, currentSpeed, sst, ssh) => {
 
@@ -83,7 +104,7 @@ const DashBoard = () => {
 
 
     const sharkHotspots = paceData.map(pacePoint => {
-        // swotPoint কে lat-lng অনুযায়ী match করো
+
         const swotPoint = swotData.find(s => s.lat === pacePoint.lat && s.lng === pacePoint.lng) || {};
 
         const probability = calculateSharkProbability(
@@ -138,6 +159,13 @@ const DashBoard = () => {
                 maxZoom: 18
             }).addTo(map);
 
+            L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Reference/MapServer/tile/{z}/{y}/{x}', {
+                attribution: 'Esri, GEBCO, NOAA',
+                maxZoom: 18
+            }).addTo(map);
+
+
+
             leafletMapRef.current = map;
 
             layersRef.current = {
@@ -189,7 +217,7 @@ const DashBoard = () => {
 
             layersRef.current.chlorophyll.addLayer(circle);
         });
-        // Phytoplankton layer
+
         paceData.forEach(point => {
             const circle = L.circle([point.lat, point.lng], {
                 color: '#00ffcc',
@@ -268,7 +296,7 @@ const DashBoard = () => {
 
         const correlationCtx = document.getElementById('correlationChart');
         if (correlationCtx) {
-            // Destroy existing chart if it exists
+
             if (chartsRef.current.correlation) {
                 chartsRef.current.correlation.destroy();
             }
@@ -331,12 +359,22 @@ const DashBoard = () => {
     const toggleLayer = (layerName) => setLayers(prev => ({ ...prev, [layerName]: !prev[layerName] }));
 
     return (
-        <div className="min-h-screen bg-[#02182F] text-white">
-            <div className="max-w-11/12 mx-auto p-5">
+        <div className="min-h-screen bg-[#031A2E] text-white">
+            <Link
+                to="/"
+                className="mx-2 md:mx-6 mt-6 inline-flex items-center gap-2 px-2 py-2 rounded-lg 
+                               bg-gradient-to-r from-cyan-500 to-blue-500 
+                               text-white font-semibold shadow-lg 
+                               hover:cursor-pointer "
+            >
+                <ArrowLeft className="w-5 h-5" />
+
+            </Link>
+            <div className="w-full md:max-w-11/12  mx-auto p-5">
                 {/* Header */}
-                <div className="text-center mb-8 ">
-                    <h1 className="text-5xl font-bold mb-3 text-cyan-500 ">
-                        🦈 Shark Foraging Prediction Dashboard
+                <div className="text-center mt-8 mb-12 ">
+                    <h1 className=" text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-3 text-cyan-500 ">
+                        Stellar Sharks Foraging Prediction Dashboard
                     </h1>
 
                 </div>
@@ -356,6 +394,10 @@ const DashBoard = () => {
                             <div className="flex items-center mb-2 text-sm">
                                 <div className="w-4 h-4 rounded-full bg-orange-500 mr-2"></div>
                                 <span>Medium Probability</span>
+                            </div>
+                            <div className="flex items-center mb-2 text-sm">
+                                <div className="w-4 h-4 rounded-full bg-yellow-500 mr-2"></div>
+                                <span>Low Probability</span>
                             </div>
                             <div className="flex items-center mb-2 text-sm">
                                 <div className="w-4 h-4 rounded-full bg-green-500 mr-2"></div>
@@ -413,22 +455,22 @@ const DashBoard = () => {
                 </div>
 
                 {/* Charts Section */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 ">
                     <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20" style={{ height: '300px' }}>
-                        <h3 className="text-cyan-400 text-center text-lg font-semibold mb-4">
+                        <h3 className="text-cyan-400 text-center lg:text-lg font-semibold mb-4">
                             Ocean Variables vs Shark Presence
                         </h3>
                         <canvas id="correlationChart"></canvas>
                     </div>
                     <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20" style={{ height: '300px' }}>
-                        <h3 className="text-cyan-400 text-center text-lg font-semibold mb-4">
+                        <h3 className="text-cyan-400 text-center lg:text-lg font-semibold mb-4">
                             Temporal Prediction Confidence
                         </h3>
                         <canvas id="timeSeriesChart"></canvas>
                     </div>
                 </div>
 
-                {/* Tag Visualization */}
+
 
             </div>
         </div>
