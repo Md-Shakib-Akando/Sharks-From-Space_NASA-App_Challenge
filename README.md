@@ -4,7 +4,7 @@ Live link: [https://stellar-sharks.netlify.app/]
 ---
 
 ### Dashboard
-![Dashboard](https://imgur.com/AiQy3Fv)
+![Dashboard](https://i.imgur.com/AiQy3Fv.png)
 
 ---
 
