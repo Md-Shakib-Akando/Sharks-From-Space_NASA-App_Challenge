@@ -41,9 +41,9 @@ const SafetyGuide = () => {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
+                    <div className="flex flex-col-reverse gap-6 xl:flex-row">
 
-                        <div className="grid gap-5 md:grid-cols-2">
+                        <div className="grid gap-5 md:grid-cols-2 xl:w-1/2">
                             {/* Card */}
                             <div className="bg-white/5 border border-cyan-500/30 rounded-xl p-6 shadow-md hover:shadow-cyan-500/30 transition">
                                 <div className="flex items-start gap-3">
@@ -119,8 +119,8 @@ const SafetyGuide = () => {
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <img src={waterSafetyImg} alt="Water Safety" className="w-full rounded-xl mb-6 shadow-lg  h-auto max-h-[700px] 
+                        <div className="xl:w-1/2">
+                            <img src={waterSafetyImg} alt="Water Safety" className="w-full rounded-xl mb-6 shadow-lg  h-auto max-h-[720px] 
              md:h-[600px] lg:h-[700px] 
              object-cover " />
                         </div>
@@ -142,11 +142,11 @@ const SafetyGuide = () => {
 
                     <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
                         <div>
-                            <img src={safetyGuideImg} alt="Safety Guide" className="w-full rounded-xl mb-6 shadow-lg  h-auto max-h-[765px] 
+                            <img src={safetyGuideImg} alt="Safety Guide" className="w-full rounded-xl mb-6 shadow-lg  h-auto max-h-[785px] 
              md:h-[600px] lg:h-[765px] 
              object-cover" />
                         </div>
-                        <div className="space-y-6">
+                        <div className="space-y-4">
                             {[
                                 "Maintain Calmness and Eye Contact",
                                 "Face the Shark",

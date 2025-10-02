@@ -17,7 +17,7 @@ const About = () => {
         { name: "Md Rafiul Islam", title: "Voice & Narrator", image: rafi }
     ];
 
-    const sectionStyle = "bg-white/5 border border-[#4FB3D4]/20 backdrop-blur-sm rounded-xl p-8 shadow-lg";
+    const sectionStyle = "bg-white/5 border border-[#4FB3D4]/20 backdrop-blur-sm rounded-xl p-4 shadow-lg";
 
     return (
         <div className="min-h-screen bg-[#031A2E]">
@@ -120,7 +120,7 @@ const About = () => {
                                     <img
                                         src={member.image}
                                         alt={member.name}
-                                        className="h-72 w-72 object-cover rounded-lg group-hover:scale-110 transition-transform duration-300"
+                                        className="w-full h-full object-cover rounded-lg group-hover:scale-110 transition-transform duration-300"
                                     />
                                 </div>
                                 <div className="p-2 pt-3 text-center">
@@ -133,7 +133,109 @@ const About = () => {
                 </div>
             </section>
 
-            <div className="h-16"></div>
+            {/* Use / Resources Section */}
+            <section className="py-16 px-4 bg-gradient-to-b from-transparent via-[#0a4d6e]/20 to-transparent">
+                <div className="container mx-auto max-w-11/12">
+                    <h2 className="text-4xl md:text-6xl font-bold text-white mb-12 text-center">Resources</h2>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                        {/* NASA */}
+                        <div className={`${sectionStyle} p-6 hover:shadow-xl transition-shadow duration-300`}>
+                            <h3 className="text-2xl font-bold text-[#4FB3D4] mb-2">NASA Ocean Data</h3>
+                            <p className="text-gray-300 mb-3 text-justify">
+                                Used to analyze chlorophyll, phytoplankton, and ocean temperature for predicting shark habitats.
+                            </p>
+                            <a
+                                href="https://oceancolor.gsfc.nasa.gov/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-white font-semibold underline hover:text-[#4FB3D4]"
+                            >
+                                Visit NASA Ocean Color
+                            </a>
+                        </div>
+                        <div className={`${sectionStyle} p-6 hover:shadow-xl transition-shadow duration-300`}>
+                            <h3 className="text-2xl font-bold text-[#4FB3D4] mb-2">NASA Ocean Data</h3>
+                            <p className="text-gray-300 mb-3 text-justify">
+                                Used to analyze latitude and longitude sea surface height data for predicting shark habitats.
+                            </p>
+                            <a
+                                href="https://podaac.jpl.nasa.gov/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-white font-semibold underline hover:text-[#4FB3D4]"
+                            >
+                                Visit NASA Ocean Data
+                            </a>
+                        </div>
+
+                        {/* AI Tools */}
+                        <div className={`${sectionStyle} p-6 hover:shadow-xl transition-shadow duration-300`}>
+                            <h3 className="text-2xl font-bold text-[#4FB3D4] mb-2">ChatGPT</h3>
+                            <p className="text-gray-300 mb-3 text-justify">
+                                Used for generating content, explanations, and research .
+                            </p>
+                            <a
+                                href="https://chat.openai.com/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-white font-semibold underline hover:text-[#4FB3D4]"
+                            >
+                                Visit ChatGPT
+                            </a>
+                        </div>
+
+                        <div className={`${sectionStyle} p-6 hover:shadow-xl transition-shadow duration-300`}>
+                            <h3 className="text-2xl font-bold text-[#4FB3D4] mb-2">Gemini AI</h3>
+                            <p className="text-gray-300 mb-3 text-justify">
+                                Used for image generation in our project.
+                            </p>
+                            <a
+                                href="https://gemini.google/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-white font-semibold underline hover:text-[#4FB3D4]"
+                            >
+                                Visit Gemini AI
+                            </a>
+                        </div>
+
+                        <div className={`${sectionStyle} p-6 hover:shadow-xl transition-shadow duration-300`}>
+                            <h3 className="text-2xl font-bold text-[#4FB3D4] mb-2">Claude AI</h3>
+                            <p className="text-gray-300 mb-3 text-justify">
+                                used for design and accelerating development tasks.
+                            </p>
+                            <a
+                                href="https://www.anthropic.com/claude"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-white font-semibold underline hover:text-[#4FB3D4]"
+                            >
+                                Visit Claude
+                            </a>
+                        </div>
+
+                        <div className={`${sectionStyle} p-6 hover:shadow-xl transition-shadow duration-300`}>
+                            <h3 className="text-2xl font-bold text-[#4FB3D4] mb-2">Lovable AI</h3>
+                            <p className="text-gray-300 mb-3 text-justify">
+                                used for design and accelerating development tasks.
+                            </p>
+                            <a
+                                href="https://lovable.dev/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-white font-semibold underline hover:text-[#4FB3D4]"
+                            >
+                                Visit Lovable
+                            </a>
+                        </div>
+
+
+                    </div>
+                </div>
+            </section>
+
         </div>
     );
 };

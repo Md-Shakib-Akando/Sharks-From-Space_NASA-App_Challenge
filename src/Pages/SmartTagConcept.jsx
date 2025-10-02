@@ -288,7 +288,7 @@ const SmartTagConcept = () => {
                 )}
             </div>
 
-            {/* Footer CTA */}
+
 
         </div>
     );
@@ -316,8 +316,8 @@ const WorkflowStep = ({ number, title, items, color }) => {
 
     return (
         <div className={`bg-gradient-to-r ${colorClasses[color]} backdrop-blur-lg rounded-2xl p-8 border`}>
-            <div className="flex items-start gap-6">
-                <div className="text-6xl font-bold text-white/20">{number}</div>
+            <div className="flex flex-col md:flex-row items-start gap-6">
+                <div className=" text-6xl font-bold text-white/20">{number}</div>
                 <div className="flex-1">
                     <h3 className="text-2xl font-bold text-white mb-6">{title}</h3>
                     <ul className="space-y-4">
