@@ -1,5 +1,5 @@
 ## 🌐 Live Link
-Live link: "https://stellar-sharks.netlify.app/"  
+Live link: https://stellar-sharks.netlify.app/  
 
 ---
 
@@ -87,9 +87,9 @@ Live link: "https://stellar-sharks.netlify.app/"
 
 
 ## 📈 Data Sources
-- [NASA Earth Observations][https://earthdata.nasa.gov/]  
-- [Phytoplankton & Chlorophyll Satellite Data][https://oceancolor.gsfc.nasa.gov/]  
-- [Ocean Temperature & Environmental Data][https://podaac.jpl.nasa.gov/]  
+- [NASA Earth Observations] https://earthdata.nasa.gov/  
+- [Phytoplankton & Chlorophyll Satellite Data] https://oceancolor.gsfc.nasa.gov/  
+- [Ocean Temperature & Environmental Data] https://podaac.jpl.nasa.gov/  
 
 
 ---
