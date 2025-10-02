@@ -1,5 +1,5 @@
-## 🌐 Demo
-Live demo link: [https://stellar-sharks.netlify.app/]  
+## 🌐 Live Link
+Live link: [https://stellar-sharks.netlify.app/]  
 
 ---
 
