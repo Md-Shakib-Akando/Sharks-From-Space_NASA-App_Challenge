@@ -3,9 +3,8 @@ Live demo link: [https://stellar-sharks.netlify.app/]
 
 ---
 
-# 🌊 Stellar Sharks
-
-
+### Dashboard
+![Dashboard](https://i.ibb.co.com/h65Q7NZ/Screenshot-2025-10-02-174033.png)
 
 ---
 
@@ -88,9 +87,9 @@ Live demo link: [https://stellar-sharks.netlify.app/]
 
 
 ## 📈 Data Sources
-- [NASA Earth Observations](https://neo.gsfc.nasa.gov/)  
-- [Phytoplankton & Chlorophyll Satellite Data](https://oceancolor.gsfc.nasa.gov/)  
-- [Ocean Temperature & Environmental Data](https://podaac.jpl.nasa.gov/)  
+- [NASA Earth Observations][https://earthdata.nasa.gov/]  
+- [Phytoplankton & Chlorophyll Satellite Data][https://oceancolor.gsfc.nasa.gov/]  
+- [Ocean Temperature & Environmental Data][https://podaac.jpl.nasa.gov/]  
 
 
 ---
