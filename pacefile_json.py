@@ -17,7 +17,7 @@ with h5py.File(file_path, 'r') as f:
         else:
             print(f"{key} is a group, skipping...")
 
-with open("pace.json", "w") as jf:
+with open("color.json", "w") as jf:
     json.dump(result, jf, indent=2)
 
-print("Conversion complete! Saved as pace.json")
+print("Conversion complete! Saved as color.json")
